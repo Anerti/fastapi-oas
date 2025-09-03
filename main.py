@@ -25,13 +25,8 @@ cars_lists: List[Car] = []
 
 
 @app.get("/ping")
-def hello():
+def getping():
     return Response(content="pong", status_code=200, media_type="text/plain")
-
-
-@app.get("/cars")
-def welcome(name: str):
-    return Response(content=f"Welcome {name}!", status_code=200, media_type="text/plain")
 
 
 @app.post("/cars")
@@ -40,7 +35,7 @@ def create_cars(car: List[Car]):
     serialized_car = []
     for car in cars_lists:
         serialized_car.append(s.model_dump())
-    return JSONResponse(content=serialized_car, status_code=201, media_type="application/json")
+    return JSONResponse(content=f"car {serialized_car} added", status_code=201, media_type="application/json")
 
 
 @app.get("/cars")
