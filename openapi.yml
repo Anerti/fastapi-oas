@@ -39,3 +39,30 @@ paths:
       responses:
         200:
           description: Pong message
+  /cars:
+    post:
+      summary: Create new car
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Car'
+      responses:
+        201:
+          description: Car added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Car'
+    get:
+      summary: Get all cars in the list
+      responses:
+        200:
+          description: List of all cars
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Car'
