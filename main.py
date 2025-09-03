@@ -57,3 +57,12 @@ def getting_car_by_id(id_fetched: id):
         if car.id == id_fetched:
             return JSONResponse(content=car, status_code=200, media_type="application/json")
     return JSONResponse(content=f"car with {id_fetched} not found", status_code=404, media_type="text/plain")
+
+
+@app.put("/cars/{id}/characteristics")
+def update_car_characteristics(fetched_id: str, new_characteristics: Characteristics):
+    for car in car_list:
+        if car.id == fetched_id:
+            car.characteristics = new_characteristics
+            return Response(content=f"{fetched_id} updated successfully", status_code=200, media_type="text/plain")
+    return Response(content=f"Car with {fetched_id} not found", status_code=404, media_type="text/plain")
