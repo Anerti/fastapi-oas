@@ -1,0 +1,41 @@
+openapi: "3.0.0"
+info:
+  title: STD24202
+  description: This is a specification of STD24202
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+
+components:
+  schemas:
+    Characteristics:
+      properties:
+        max_speed:
+          type: integer
+          example: 400
+        max_fuel_capacity:
+          type: integer
+          example: 70
+    Car:
+      properties:
+        id:
+          type: string
+          example: "78451"
+        brand:
+          type: string
+          example: "Bmw"
+        model:
+          type: string
+          example: "400"
+        characteristics:
+          $ref: '#/components/schemas/Characteristics'
+
+paths:
+  /ping:
+    get:
+      tags:
+        - Ping
+      summary: Get pong message
+      responses:
+        200:
+          description: Pong message
